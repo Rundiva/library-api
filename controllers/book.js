@@ -1,14 +1,34 @@
+import { BookModel } from "../model/book.js";
 
-export const addBook =(req, res, next) => {
-    res.json ('Book added Successfully!');
+
+export const addBook = async (req, res, next) => {
+    try {
+        await BookModel.create(req.body);
+        res.status(200).json (books);
+    } catch (error) {
+        next (error);
+        
+    }
 }
 
-export const getAllBooks =(req, res, next) => {
-    res.json ('Pick a Book!');
+export const getAllBooks = async(req, res, next) => {
+    try {
+
+        await BookModel.find(req.body);
+        res.json ('Pick a Book!');
+    } catch (error) {
+        next(error)
+        
+    }
 }
 
-export const getOneBook =(req, res, next) => {
-    res.json ('View Book!');
+export const getOneBook = async(req, res, next) => {
+    try {
+        await BookModel.find();
+        res.json ('View Book!');
+    } catch (error) {
+        
+    }
 }
 
 

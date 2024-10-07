@@ -1,4 +1,4 @@
-
+import { UserModel } from "../model/user.js";
 
 export const registerUser= (req, res, next) => {
     res.json('Register user!');

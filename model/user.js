@@ -20,17 +20,5 @@ const userSchema = new Schema({
     }
 
 });
-export const newUserModel = model('user', userSchema);
+export const UserModel = model('User', userSchema);
 
-// const userSchema = new Schema({
-
-//     Email : {
-//         type : String,
-//     },
-
-//     Password: {
-//         type : String,
-//     }
-
-// });
-// export const userModel = model('user', userSchema);
