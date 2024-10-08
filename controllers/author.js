@@ -6,6 +6,7 @@ export const addAuthor = async (req, res, next) => {
         await AuthorModel.create(req.body);
         res.status(201).json('Author added Successfully!');
     } catch (error) {
+
         next(error);
 
     }
@@ -13,11 +14,11 @@ export const addAuthor = async (req, res, next) => {
 }
 
 export const getAllAuthors = async (req, res, next) => {
-
     try {
         const authors = await AuthorModel.find(req.body);
         res.status(200).json(authors);
     } catch (error) {
+     
         next(error);
 
     }
@@ -29,7 +30,6 @@ export const getOneAuthor = async (req, res, next) => {
         res.status(200).json('View Author!');
     } catch (error) {
         next(error)
-
     }
 }
 

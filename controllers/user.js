@@ -8,12 +8,10 @@ export const registerUser = async (req, res, next) => {
      next(error)
      
     }
-
 }
 
 export const logInUser = (req, res, next) => {
     res.status(200).json('User checked in!');
-}
 
 
 export const logOutUser = (req, res, next) => {
