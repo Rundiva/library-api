@@ -1,11 +1,24 @@
 import { UserModel } from "../model/user.js";
 
-export const registerUser= (req, res, next) => {
-    res.json('Register user!');
+export const registerUser= async(req, res, next) => {
+
+   try {
+    await UserModel.create(req.body);
+     res.json('User Registered!');
+   } catch (error) {
+    next (error)
+    
+   }
 }
 
-export const logInUser = (req, res, next) => {
-    res.json('User checked in!');
+export const logInUser = async (req, res, next) => {
+   try {
+    await UserModel.find(req.body);
+     res.json('User checked in!');
+   } catch (error) {
+    next (error)
+    
+   }
 }
     
  
