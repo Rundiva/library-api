@@ -10,8 +10,10 @@ import authorRouter from "./routes/author.js";
 // Create an express app
 const app = express();
 
-await mongoose.connect(process.env.MONGO_URI)
+await mongoose.connect(process.env.MONGO_URI);
+// .then(() => console.log("Database connected")).catch((error) => console.log('Error connecting to database'))
 
+app.use(express.json())
 // declare routes
 app.use(bookRouter);
 app.use(userRouter);
@@ -26,5 +28,5 @@ app.use(reviewRouter);
 
 // Listen for incoming reqeusts
 app.listen(5000, () => {
-    console. log('App is listening on port 5000');
+    console.log('App is listening on port 5000');
 });

@@ -6,4 +6,4 @@ bio: {type: String, required: true}
 
 });
 
-export const AuthorModel = model('Author', authorSchema);
+export const AuthorModel = model( 'Author', authorSchema )

@@ -3,8 +3,9 @@ import { BookModel } from "../model/book.js";
 
 export const addBook = async (req, res, next) => {
     try {
-        await BookModel.create(req.body);
-        res.status(200).json (books);
+        console.log("Request body-->",await  req)
+        const books = await BookModel.create(req.body);
+        res.status(200).json(books);
     } catch (error) {
         next (error);
         

@@ -3,8 +3,8 @@ import { AuthorModel } from "../model/author.js";
 export const addAuthor = async(req, res, next) => {
     
        try {
-        await AuthorModel.create(req.body);
-         res.status(200).json ('Author added Successfully!');
+        const authors = await AuthorModel.create(req.body);
+         res.status(200).json (authors);
        } catch (error) {
         next(error);
         
@@ -16,8 +16,8 @@ export const getAllAuthors = async(req, res, next) => {
 
        try {
     
-        await AuthorModel.find(req.body);
-         res.json (books);
+        await AuthorModel.find();
+         res.json ('List Authors');
        } catch (error) {
         next(error);
         
@@ -26,10 +26,10 @@ export const getAllAuthors = async(req, res, next) => {
 
 export const getOneAuthor = async(req, res, next) => {
     try {
-        await AuthorModel.find(req.body);
+        await AuthorModel.find();
         res.json ('View Author!');
     } catch (error) {
-        next(error)
+        next(error);
         
     }
 }

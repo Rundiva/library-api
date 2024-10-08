@@ -5,7 +5,7 @@ export const addReview = async (req, res, next) => {
         await ReviewModel.create(req.body);
          res.status(200).json ('Review added Successfully!');
        } catch (error) {
-        next(error)
+        next(error);
         
        }
 
@@ -17,7 +17,7 @@ export const getAllReviews = async(req, res, next) => {
          res.json ('List Review!');
  
        } catch (error) {
-        next (error)
+        next (error);
         
        }
 }
@@ -27,7 +27,7 @@ export const getOneReview = async(req, res, next) => {
         await ReviewModel.find(req.body);
         res.json ('View Review!');
     } catch (error) {
-        next(error)
+        next(error);
         
     }
 }
