@@ -1,27 +1,19 @@
 import { UserModel } from "../model/user.js";
 
-export const registerUser= async(req, res, next) => {
-
-   try {
-    await UserModel.create(req.body);
-     res.json('User Registered!');
-   } catch (error) {
-    next (error)
-    
-   }
+export const registerUser = async (req, res, next) => {
+    try {
+     await UserModel.create(req.body);
+      res.status(201).json ('User registered Successfully!');
+    } catch (error) {
+     next(error)
+     
+    }
 }
 
-export const logInUser = async (req, res, next) => {
-   try {
-    await UserModel.find(req.body);
-     res.json('User checked in!');
-   } catch (error) {
-    next (error)
-    
-   }
-}
-    
- 
+export const logInUser = (req, res, next) => {
+    res.status(200).json('User checked in!');
+
+
 export const logOutUser = (req, res, next) => {
-    res.json('User checked out!');
+    res.status(200).json('User checked out!');
 }
