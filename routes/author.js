@@ -7,11 +7,11 @@ authorRouter.post('/authors', addAuthor);
 
 authorRouter.get('/authors', getAllAuthors);
 
-authorRouter.get('/authors', getOneAuthor);
+authorRouter.get('/authors/:id', getOneAuthor);
 
-authorRouter.patch('/authors', updateAuthor);
+authorRouter.patch('/authors/:id', updateAuthor);
 
-authorRouter.delete('/authors', deleteAuthor);
+authorRouter.delete('/authors/:id', deleteAuthor);
 
 
 

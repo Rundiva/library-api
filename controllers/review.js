@@ -3,7 +3,7 @@ import { ReviewModel } from "../model/review.js";
 export const addReview = async (req, res, next) => {
        try {
         await ReviewModel.create(req.body);
-         res.status(200).json ('Review added Successfully!');
+         res.status(201).json ('Review added Successfully!');
        } catch (error) {
         next(error)
         
@@ -14,7 +14,7 @@ export const addReview = async (req, res, next) => {
 export const getAllReviews = async(req, res, next) => {
        try {
         await ReviewModel.find(req.body);
-         res.json ('List Review!');
+         res.status(200).json ('List Review!');
  
        } catch (error) {
         next (error)
@@ -24,19 +24,35 @@ export const getAllReviews = async(req, res, next) => {
 
 export const getOneReview = async(req, res, next) => {
     try {
-        await ReviewModel.find(req.body);
-        res.json ('View Review!');
+        await ReviewModel.findById(req.params.id);
+        res.status(200).json ('View Book!');
     } catch (error) {
         next(error)
-        
     }
 }
 
 
-export const updateReview =(req, res, next) => {
-    res.json ('Review updated Successfully!');
+export const updateReview = async (req, res, next) => {
+    try {
+        await ReviewModel.findByIdAndUpdate(req.params.id)
+        res.status(200).json('Book updated Successfully!');
+    } catch (error) {
+        next(error)
+    }
 }
 
-export const deleteReview =(req, res, next) => {
-    res.json ('Review deleted Successfully!');
+
+
+export const deleteReview = async (req, res, next) => {
+
+    try {
+        await ReviewModel.findByIdAndDelete(req.params.id)
+            res.status(200).json('Book deleted Successfully!');
+
+    } catch (error) {
+        next(error)
+
+    }
+
 }
+

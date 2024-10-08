@@ -1,6 +1,6 @@
-import express from "express"
+import express from "express";
+import cors from "cors";
 import mongoose from "mongoose";
-import "dotenv/config";
 import bookRouter from "./routes/book.js";
 import userRouter from "./routes/user.js";
 import reviewRouter from "./routes/review.js";
@@ -10,6 +10,10 @@ import authorRouter from "./routes/author.js";
 // Create an express app
 const app = express();
 
+// middleware
+app.use(express.json());
+app.use(cors());
+
 await mongoose.connect(process.env.MONGO_URI)
 
 // declare routes
@@ -18,11 +22,6 @@ app.use(userRouter);
 app.use(authorRouter);
 app.use(reviewRouter);
 
-// define a route
-// app.get('/book', (req, res, next) => {
-//     console.log(req.headers);
-//     res.json("book");
-// })
 
 // Listen for incoming reqeusts
 app.listen(5000, () => {
