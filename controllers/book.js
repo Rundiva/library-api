@@ -23,8 +23,8 @@ export const getAllBooks = async (req, res, next) => {
 
 export const getOneBook = async (req, res, next) => {
     try {
-       await BookModel.findById(req.params.id);
-        res.status(200).json("View book");
+     const viewbook = await BookModel.findById(req.params.id);
+        res.status(200).json(viewbook);
     } catch (error) {
         next(error)
     }
@@ -33,8 +33,8 @@ export const getOneBook = async (req, res, next) => {
 
 export const updateBook = async (req, res, next) => {
     try {
-        await BookModel.findByIdAndUpdate(req.params.id)
-        res.status(200).json('Book updated Successfully!');
+        const updatebook = await BookModel.findByIdAndUpdate(req.params.id)
+        res.status(200).json(updatebook);
     } catch (error) {
         next(error)
     }
