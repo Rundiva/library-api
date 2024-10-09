@@ -1,16 +1,16 @@
 
-import { Schema, model } from "mongoose";
+// import { Schema, model } from "mongoose";
 
-const userSchema = new Schema({
+// const userSchema = new Schema({
 
-    firstName : { type: String },
+//     firstName : { type: String },
 
-    lastName : {type: String },
+//     lastName : {type: String },
 
-    Email : {type : String, rquired : true },
+//     Email : {type : String , required : true },
 
-    Password: { type : String }
+//     Password: { type : String, required: true }
 
-});
-export const UserModel = model('User', userSchema);
+// });
+// export const UserModel = model('User', userSchema);
 
