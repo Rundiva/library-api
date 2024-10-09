@@ -4,7 +4,7 @@ export const addAuthor = async (req, res, next) => {
 
     try {
         await AuthorModel.create(req.body);
-        res.status(201).json('Author added Successfully!');
+        res.status(201).json("Author added successfully");
     } catch (error) {
 
         next(error);
@@ -15,7 +15,7 @@ export const addAuthor = async (req, res, next) => {
 
 export const getAllAuthors = async (req, res, next) => {
     try {
-        const authors = await AuthorModel.find(req.body);
+        const authors = await AuthorModel.find();
         res.status(200).json(authors);
     } catch (error) {
      
