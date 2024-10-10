@@ -29,7 +29,7 @@ const schema = Joi.object({
 // export const UserSchema = model('User', Schema);
 
 const { error } = schema.validate(req.body);
-if (error) return res.status(200).json({ success: false, message: error. details[0].message });
+if (error) return res.status(400).json({ success: false, message: error. details[0].message });
 next ();
 
 }
