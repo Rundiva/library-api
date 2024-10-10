@@ -1,7 +1,13 @@
 import { ReviewModel } from "../model/review.js";
+import { reviewValidationSchema, updatReviewValidationSchema } from "../validators/review.js";
 
 export const addReview = async (req, res, next) => {
        try {
+         // validator
+         const {error, value} = reviewValidationSchema.validate(req.body);
+         if (error) {
+             return res.status(422).json(error);
+         }
 
         await ReviewModel.create(req.body);
          res.status(201).json ('Review added Successfully!');
@@ -25,8 +31,8 @@ export const getAllReviews = async(req, res, next) => {
 
 export const getOneReview = async(req, res, next) => {
     try {
-        await ReviewModel.findById(req.params.id);
-        res.status(200).json ('View Book!');
+        const reviews = await ReviewModel.findById(req.params.id);
+        res.status(200).json (reviews);
     } catch (error) {
         next(error)
     }
@@ -35,10 +41,16 @@ export const getOneReview = async(req, res, next) => {
 
 export const updateReview = async (req, res, next) => {
     try {
+
+         // validator
+         const {error, value} = updatReviewValidationSchema.validate(req.body);
+         if (error) {
+             return res.status(422).json(error);
+         }
         await ReviewModel.findByIdAndUpdate(req.params.id)
         res.status(200).json('Book updated Successfully!');
     } catch (error) {
-        next(error)
+        next(error);
 
     }
 }
