@@ -1,11 +1,18 @@
 import { BookModel } from "../model/book.js";
+import { bookValidationSchema, updateBookValidationSchema } from "../validators/book.js";
 
 
 export const addBook = async (req, res, next) => {
     try {
+        // validator
+        const {error, value} = bookValidationSchema.validate(req.body);
+        if (error) {
+            return res.status(422).json(error);
+        }
+
         // console.log("Request body-->",await  req)
-       const showbook= await BookModel.create(req.body);
-        res.status(201).json(showbook);
+       const showbook= await BookModel.create(value);
+        res.status(201).json('Book Titled `${showbook.title}`added Successfully!');
     } catch (error) {
         next(error);
 
@@ -32,7 +39,13 @@ export const getOneBook = async (req, res, next) => {
 
 
 export const updateBook = async (req, res, next) => {
-    try {
+    try { 
+        // validator
+        const {error, value} = updateBookValidationSchema.validate(req.body);
+        if (error) {
+            return res.status(422).json(error);
+        }
+
         const updatebook = await BookModel.findByIdAndUpdate(req.params.id)
         res.status(200).json(updatebook);
     } catch (error) {
