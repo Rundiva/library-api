@@ -11,8 +11,8 @@ export const addBook = async (req, res, next) => {
         }
 
         // console.log("Request body-->",await  req)
-       const showbook= await BookModel.create(value);
-        res.status(201).json('Book Titled `${showbook.title}`added Successfully!');
+       const showbook= await BookModel.create(req.body);
+        res.status(201).json(`Book titled '${showbook.title}' added successfully`);
     } catch (error) {
         next(error);
 
