@@ -15,7 +15,7 @@ import Joi from "joi";
         title:Joi.string(),
         summary:Joi.string() ,
         author:Joi.string(),
-         cover:Joi.string().required(),
-         content:Joi.string().required(),
+         cover:Joi.string(),
+         content:Joi.string(),
 
     })
