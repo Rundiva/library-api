@@ -5,13 +5,13 @@ import { bookValidationSchema, updateBookValidationSchema } from "../validators/
 export const addBook = async (req, res, next) => {
     try {
         // validator
-        const {error, value} = bookValidationSchema.validate(req.body);
+        const { error, value } = bookValidationSchema.validate(req.body);
         if (error) {
             return res.status(422).json(error);
         }
 
         // console.log("Request body-->",await  req)
-       const showbook= await BookModel.create(req.body);
+        const showbook = await BookModel.create(value);
         res.status(201).json(`Book titled '${showbook.title}' added successfully`);
     } catch (error) {
         next(error);
@@ -21,16 +21,16 @@ export const addBook = async (req, res, next) => {
 
 export const getAllBooks = async (req, res, next) => {
     try {
-        const books = await BookModel.find();
-        res.status(200).json (books);
+        const books = await BookModel.find().populate('author');
+        res.status(200).json(books);
     } catch (error) {
-        next(error)
+        next(error);
     }
 }
 
 export const getOneBook = async (req, res, next) => {
     try {
-     const viewbook = await BookModel.findById(req.params.id);
+        const viewbook = await BookModel.findById(req.params.id).populate('author');
         res.status(200).json(viewbook);
     } catch (error) {
         next(error)
@@ -39,14 +39,14 @@ export const getOneBook = async (req, res, next) => {
 
 
 export const updateBook = async (req, res, next) => {
-    try { 
+    try {
         // validator
-        const {error, value} = updateBookValidationSchema.validate(req.body);
+        const { error, value } = updateBookValidationSchema.validate(req.body);
         if (error) {
             return res.status(422).json(error);
         }
 
-        const updatebook = await BookModel.findByIdAndUpdate(req.params.id)
+        const updatebook = await BookModel.findByIdAndUpdate(req.params.id, value, { new: true });
         res.status(200).json(updatebook);
     } catch (error) {
         next(error)
