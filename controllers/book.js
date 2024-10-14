@@ -5,7 +5,7 @@ import { bookValidationSchema, updateBookValidationSchema } from "../validators/
 export const addBook = async (req, res, next) => {
     try {
         // validator
-        const { error, value } = bookValidationSchema.validate(req.body);
+        const { error, value } = bookValidationSchema.validate({...req.body, cover: req.file?.filename});
         if (error) {
             return res.status(422).json(error);
         }
